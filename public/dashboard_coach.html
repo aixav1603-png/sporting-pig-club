@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Coach - Pig Fit Club</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="images/logo.svg" alt="Pig Fit Club" class="sidebar-logo">
+                <div>
+                    <h2>Pig Fit Club</h2>
+                    <p>Coach</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">Resumen</a>
+                <a href="#" class="nav-item" data-section="athletes">Atletas</a>
+                <a href="#" class="nav-item" data-section="workouts">Entrenamientos</a>
+            </nav>
+            <button id="logout-btn" class="btn btn-secondary btn-logout">Cerrar sesión</button>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div>
+                    <p class="page-label">Coach</p>
+                    <h1 id="dashboard-title">Panel de entrenamiento</h1>
+                </div>
+                <div id="user-info" class="profile-badge">Usuario activo</div>
+            </header>
+
+            <section class="dashboard-content">
+                <section id="overview-section" class="dashboard-section active">
+                    <div id="dashboard-cards" class="cards-grid"></div>
+                </section>
+
+                <section id="athletes-section" class="dashboard-section">
+                    <div class="section-heading">
+                        <p class="section-label">Atletas</p>
+                        <h2>Seguimiento del equipo</h2>
+                    </div>
+                    <div id="extra-container" class="table-card"></div>
+                </section>
+
+                <section id="workouts-section" class="dashboard-section">
+                    <div class="section-heading">
+                        <p class="section-label">Entrenamientos</p>
+                        <h2>Sesiones planificadas</h2>
+                    </div>
+                    <div class="program-cards">
+                        <div class="program-card">
+                            <h3>Entrenamiento de fuerza</h3>
+                            <p>Controla las cargas, asistentes y el rendimiento del grupo.</p>
+                            <span class="badge badge-primary">Programado</span>
+                        </div>
+                        <div class="program-card">
+                            <h3>Cardio de resistencia</h3>
+                            <p>Marca objetivos de intensidad y seguimiento para tu equipo.</p>
+                            <span class="badge badge-secondary">Esta semana</span>
+                        </div>
+                        <div class="program-card">
+                            <h3>Flexibilidad y movilidad</h3>
+                            <p>Mejora el rendimiento y reduce el riesgo de lesiones.</p>
+                            <span class="badge badge-secondary">Próximo</span>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

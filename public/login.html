@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - Pig Fit Club</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-layout">
+        <div class="auth-panel">
+            <div class="auth-brand">
+                <img src="images/logo.svg" alt="Pig Fit Club" class="brand-logo">
+                <div>
+                    <h1>Pig Fit Club</h1>
+                    <p>Accede a tu espacio de entrenamiento y gestión.</p>
+                </div>
+            </div>
+
+            <div class="auth-card">
+                <h2>Iniciar sesión</h2>
+                <p class="auth-subtitle">Ingresa tus datos para acceder a tu perfil.</p>
+
+                <form id="login-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="ejemplo@dominio.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">Entrar</button>
+                </form>
+
+                <div class="auth-footer">
+                    <p>¿No tienes una cuenta? <a href="register.html">Regístrate</a></p>
+                    <p><a href="index.html">Volver al inicio</a></p>
+                </div>
+
+                <div class="demo-credentials">
+                    <h4>Credenciales de prueba</h4>
+                    <div class="demo-item"><strong>Admin:</strong> admin@pigfit.com / password123</div>
+                    <div class="demo-item"><strong>Coach:</strong> coach@pigfit.com / password123</div>
+                    <div class="demo-item"><strong>Atleta:</strong> athlete@pigfit.com / password123</div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="auth-aside">
+            <div class="aside-overlay"></div>
+            <div class="aside-content">
+                <h3>Transforma el rendimiento de tu club.</h3>
+                <p>Accede a métricas precisas, administra miembros y coordina entrenamientos en una interfaz limpia.</p>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

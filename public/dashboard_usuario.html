@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Atleta - Pig Fit Club</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="images/logo.svg" alt="Pig Fit Club" class="sidebar-logo">
+                <div>
+                    <h2>Pig Fit Club</h2>
+                    <p>Atleta</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">Resumen</a>
+                <a href="#" class="nav-item" data-section="workouts">Entrenamientos</a>
+                <a href="#" class="nav-item" data-section="goals">Objetivos</a>
+            </nav>
+            <button id="logout-btn" class="btn btn-secondary btn-logout">Cerrar sesión</button>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div>
+                    <p class="page-label">Atleta</p>
+                    <h1 id="dashboard-title">Mi progreso</h1>
+                </div>
+                <div id="user-info" class="profile-badge">Usuario activo</div>
+            </header>
+
+            <section class="dashboard-content">
+                <section id="overview-section" class="dashboard-section active">
+                    <div id="dashboard-cards" class="cards-grid"></div>
+                    <div class="athlete-quick-stats">
+                        <p class="section-label">Resumen</p>
+                        <h2>Próximos entrenamientos</h2>
+                        <div id="extra-container" class="upcoming-workouts"></div>
+                    </div>
+                </section>
+
+                <section id="workouts-section" class="dashboard-section">
+                    <div class="section-heading">
+                        <p class="section-label">Historial</p>
+                        <h2>Entrenamientos recientes</h2>
+                    </div>
+                    <div class="workouts-history">
+                        <div class="workout-item">
+                            <div class="workout-date">
+                                <span class="date-day">06</span>
+                                <span class="date-month">Jun</span>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Entrenamiento de fuerza</h4>
+                                <p>Duración: 2 horas | Calorías: 450 | Intensidad: Alta</p>
+                            </div>
+                            <div class="workout-status">
+                                <span class="badge badge-success">Completado</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="workout-date">
+                                <span class="date-day">05</span>
+                                <span class="date-month">Jun</span>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Cardio</h4>
+                                <p>Duración: 1.5 horas | Calorías: 650 | Intensidad: Extrema</p>
+                            </div>
+                            <div class="workout-status">
+                                <span class="badge badge-success">Completado</span>
+                            </div>
+                        </div>
+                        <div class="workout-item">
+                            <div class="workout-date">
+                                <span class="date-day">04</span>
+                                <span class="date-month">Jun</span>
+                            </div>
+                            <div class="workout-details">
+                                <h4>Flexibilidad y estiramientos</h4>
+                                <p>Duración: 1 hora | Calorías: 200 | Intensidad: Media</p>
+                            </div>
+                            <div class="workout-status">
+                                <span class="badge badge-success">Completado</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="goals-section" class="dashboard-section">
+                    <div class="section-heading">
+                        <p class="section-label">Objetivos</p>
+                        <h2>Progreso actual</h2>
+                    </div>
+                    <div class="goals-container">
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h4>Pérdida de peso</h4>
+                                <span class="goal-progress">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <p><small>Objetivo: 5kg | Perdido: 3.75kg</small></p>
+                        </div>
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h4>Sesiones por semana</h4>
+                                <span class="goal-progress">60%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <p><small>Objetivo: 5 | Completadas: 3</small></p>
+                        </div>
+                        <div class="goal-card">
+                            <div class="goal-header">
+                                <h4>Aumento de fuerza</h4>
+                                <span class="goal-progress">85%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <p><small>Benchmark: 100kg | Actual: 85kg</small></p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

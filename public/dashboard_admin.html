@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador - Pig Fit Club</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <img src="images/logo.svg" alt="Pig Fit Club" class="sidebar-logo">
+                <div>
+                    <h2>Pig Fit Club</h2>
+                    <p>Administrador</p>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">Resumen</a>
+                <a href="#" class="nav-item" data-section="users">Usuarios</a>
+                <a href="#" class="nav-item" data-section="stats">Estadísticas</a>
+            </nav>
+            <button id="logout-btn" class="btn btn-secondary btn-logout">Cerrar sesión</button>
+        </aside>
+
+        <main class="dashboard-main">
+            <header class="dashboard-header">
+                <div>
+                    <p class="page-label">Administrador</p>
+                    <h1 id="dashboard-title">Panel de administración</h1>
+                </div>
+                <div id="user-info" class="profile-badge">Usuario activo</div>
+            </header>
+
+            <section class="dashboard-content">
+                <section id="overview-section" class="dashboard-section active">
+                    <div id="dashboard-cards" class="cards-grid"></div>
+                </section>
+
+                <section id="users-section" class="dashboard-section">
+                    <div class="section-header">
+                        <div>
+                            <p class="section-label">Usuarios</p>
+                            <h2>Gestión de cuentas</h2>
+                        </div>
+                        <button id="add-user-btn" class="btn btn-primary">Nuevo usuario</button>
+                    </div>
+
+                    <div id="add-user-form" class="panel-card panel-hidden">
+                        <h3>Nuevo usuario</h3>
+                        <form id="user-form">
+                            <input type="hidden" id="user-id">
+                            <div class="form-row">
+                                <label>Nombre</label>
+                                <input type="text" id="user-name" required>
+                            </div>
+                            <div class="form-row">
+                                <label>Email</label>
+                                <input type="email" id="user-email" required>
+                            </div>
+                            <div class="form-row">
+                                <label>Contraseña</label>
+                                <input type="password" id="user-password" minlength="6">
+                            </div>
+                            <div class="form-row">
+                                <label>Rol</label>
+                                <select id="user-role" required>
+                                    <option value="Athlete">Atleta</option>
+                                    <option value="Coach">Entrenador</option>
+                                    <option value="Admin">Administrador</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                <button type="button" id="cancel-form" class="btn btn-secondary">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="table-card">
+                        <table id="users-table" class="dashboard-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Creación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="stats-section" class="dashboard-section">
+                    <div class="section-heading">
+                        <p class="section-label">Estadísticas</p>
+                        <h2>Visión general del sistema</h2>
+                    </div>
+                    <div id="extra-container" class="extra-grid"></div>
+                </section>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

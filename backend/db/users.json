@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Admin Pig",
+    "email": "admin@pigfit.com",
+    "password": "$2b$10$BfiOkTXZBIKfmTKLkhyHYuOdBzrn1VEmjmwxThZua8MqkRmNxQnNW",
+    "role": "Admin",
+    "createdAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": 2,
+    "name": "Coach Hammy",
+    "email": "coach@pigfit.com",
+    "password": "$2b$10$BfiOkTXZBIKfmTKLkhyHYuOdBzrn1VEmjmwxThZua8MqkRmNxQnNW",
+    "role": "Coach",
+    "createdAt": "2024-01-02T00:00:00Z"
+  },
+  {
+    "id": 3,
+    "name": "Truffles Athlete",
+    "email": "athlete@pigfit.com",
+    "password": "$2b$10$BfiOkTXZBIKfmTKLkhyHYuOdBzrn1VEmjmwxThZua8MqkRmNxQnNW",
+    "role": "Athlete",
+    "createdAt": "2024-01-03T00:00:00Z"
+  }
+]
