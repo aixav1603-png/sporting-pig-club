@@ -83,6 +83,28 @@ function redirectByRole(role) {
   }
 }
 
+function getSavedUser() {
+  const token = sessionStorage.getItem('authToken');
+  const user = sessionStorage.getItem('pigfitUser');
+  if (!token || !user) return null;
+  try {
+    return JSON.parse(user);
+  } catch (err) {
+    return null;
+  }
+}
+
+function redirectIfAlreadyAuthenticated() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const savedUser = getSavedUser();
+  if (!savedUser) return;
+
+  const authPages = ['login.html', 'register.html', 'index.html', ''];
+  if (authPages.includes(currentPage)) {
+    redirectByRole(savedUser.role);
+  }
+}
+
 window.logout = function() {
   if (confirm('¿Deseas cerrar sesión?')) {
     sessionStorage.removeItem('authToken');
@@ -90,3 +112,5 @@ window.logout = function() {
     window.location.href = 'login.html';
   }
 };
+
+document.addEventListener('DOMContentLoaded', redirectIfAlreadyAuthenticated);

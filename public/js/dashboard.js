@@ -1,17 +1,33 @@
 // ===== Dashboard Module =====
 
+function getDashboardPageForRole(role) {
+  if (role === 'Admin') return 'dashboard_admin.html';
+  if (role === 'Coach') return 'dashboard_coach.html';
+  return 'dashboard_usuario.html';
+}
+
 // Verificar autenticación al cargar
 function requireAuth() {
   const token = sessionStorage.getItem('authToken');
-  const user = sessionStorage.getItem('pigfitUser');
+  const userJson = sessionStorage.getItem('pigfitUser');
 
-  if (!token || !user) {
+  if (!token || !userJson) {
     console.log('No autenticado, redirigiendo a login...');
     window.location.href = 'login.html';
     return null;
   }
 
-  return JSON.parse(user);
+  const user = JSON.parse(userJson);
+  const currentPage = window.location.pathname.split('/').pop();
+  const expectedPage = getDashboardPageForRole(user.role);
+  const dashboardPages = ['dashboard_admin.html', 'dashboard_coach.html', 'dashboard_usuario.html'];
+
+  if (dashboardPages.includes(currentPage) && currentPage !== expectedPage) {
+    window.location.href = expectedPage;
+    return null;
+  }
+
+  return user;
 }
 
 // Cargar dashboard
@@ -134,6 +150,7 @@ async function loadUsersList() {
 }
 
 function renderUsersList(users) {
+  window.currentUserList = users;
   const tbody = document.querySelector('#users-table tbody');
   if (!tbody) return;
 
@@ -156,8 +173,32 @@ function renderUsersList(users) {
   });
 }
 
+function resetUserForm() {
+  const addUserForm = document.getElementById('add-user-form');
+  const userForm = document.getElementById('user-form');
+  if (!userForm || !addUserForm) return;
+
+  userForm.reset();
+  document.getElementById('user-id').value = '';
+  document.getElementById('user-password').value = '';
+  addUserForm.style.display = 'none';
+}
+
 window.editUser = function(userId) {
-  alert('Funcionalidad de editar en desarrollo. ID: ' + userId);
+  const user = window.currentUserList?.find(u => u.id === userId);
+  const addUserForm = document.getElementById('add-user-form');
+  const userForm = document.getElementById('user-form');
+  const formTitle = document.getElementById('user-form-title');
+
+  if (!user || !userForm || !addUserForm || !formTitle) return;
+
+  addUserForm.style.display = 'block';
+  formTitle.textContent = 'Editar usuario';
+  document.getElementById('user-id').value = user.id;
+  document.getElementById('user-name').value = user.name;
+  document.getElementById('user-email').value = user.email;
+  document.getElementById('user-role').value = user.role;
+  document.getElementById('user-password').value = '';
 };
 
 window.deleteUser = async function(userId) {
@@ -180,14 +221,16 @@ const cancelFormBtn = document.getElementById('cancel-form');
 
 if (addUserBtn) {
   addUserBtn.addEventListener('click', () => {
-    addUserForm.style.display = addUserForm.style.display === 'none' ? 'block' : 'none';
+    resetUserForm();
+    addUserForm.style.display = 'block';
+    const formTitle = document.getElementById('user-form-title');
+    if (formTitle) formTitle.textContent = 'Nuevo usuario';
   });
 }
 
 if (cancelFormBtn) {
   cancelFormBtn.addEventListener('click', () => {
-    addUserForm.style.display = 'none';
-    userForm.reset();
+    resetUserForm();
   });
 }
 
@@ -211,14 +254,15 @@ async function handleSaveUser(e) {
 
   try {
     if (userId) {
-      // Actualizar
+      const body = { name, email, role };
+      if (password) body.password = password;
+
       await apiRequest(`/users/${userId}`, {
         method: 'PUT',
-        body: JSON.stringify({ name, email, role })
+        body: JSON.stringify(body)
       });
       alert('✅ Usuario actualizado');
     } else {
-      // Crear nuevo
       if (!password) {
         alert('⚠️ La contraseña es requerida para nuevos usuarios');
         return;
@@ -230,8 +274,7 @@ async function handleSaveUser(e) {
       alert('✅ Usuario creado');
     }
 
-    document.getElementById('add-user-form').style.display = 'none';
-    userForm.reset();
+    resetUserForm();
     loadUsersList();
   } catch (error) {
     alert('❌ Error: ' + error.message);

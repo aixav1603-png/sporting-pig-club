@@ -33,6 +33,7 @@ async function saveUsers(users) {
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
+    const allowedRoles = ['Athlete', 'Coach'];
 
     // Validaciones
     if (!name || !email || !password) {
@@ -56,7 +57,7 @@ router.post('/register', async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      role: role || 'Athlete',
+      role: allowedRoles.includes(role) ? role : 'Athlete',
       createdAt: new Date().toISOString()
     };
 

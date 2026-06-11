@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
 // PUT /api/users/:id - Actualizar usuario (Admin only)
 router.put('/:id', async (req, res) => {
   try {
-    const { name, email, role } = req.body;
+    const { name, email, role, password } = req.body;
     const userId = parseInt(req.params.id);
 
     const users = await readUsers();
@@ -100,6 +100,10 @@ router.put('/:id', async (req, res) => {
     if (name) user.name = name;
     if (email) user.email = email;
     if (role) user.role = role;
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
 
     await saveUsers(users);
 

@@ -1,20 +1,21 @@
 // ===== API Communication Layer =====
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 // Detectar si se está ejecutando en host estático
 function isStaticHost() {
-  const origin = window.location.origin;
-  return origin.includes('file://') || origin.includes('github.io') || origin.includes('127.0.0.1:5500');
+  const protocol = window.location.protocol;
+  return protocol === 'file:' || window.location.origin.includes('github.io');
 }
 
 // Simular datos cuando se ejecuta en host estático
 function handleStaticSimulation(endpoint) {
+  const route = endpoint.startsWith('/api/') ? endpoint : `/api${endpoint}`;
   return new Promise((resolve) => {
     setTimeout(() => {
       const token = sessionStorage.getItem('authToken');
       const user = JSON.parse(sessionStorage.getItem('pigfitUser') || '{}');
 
-      if (endpoint === '/api/auth/login' || endpoint === '/api/auth/register') {
+      if (route === '/api/auth/login' || route === '/api/auth/register') {
         resolve({
           message: 'Éxito en simulación',
           token: 'mock_jwt_token_' + Date.now(),
